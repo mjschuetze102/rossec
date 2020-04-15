@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 import rospy
+from rossec.msg import String
 
 
 class Publisher:
@@ -10,6 +11,8 @@ class Publisher:
     def __init__(self, *args, **kwargs):
         data_class = args[1]
         print("Data Class: ", data_class)
+        args = args[:1] + (String,) + args[2:]
+        print("New Data Class: ", args[1])
         self.pub = rospy.Publisher(*args, **kwargs)
 
     def publish(self, *args, **kwargs):
@@ -27,6 +30,8 @@ class Subscriber:
         print("Data Class: ", data_class)
         print("Callback: ", callback)
         print("Callback Args: ", callback_args)
+        args = args[:1] + (String,) + args[2:]
+        print("New Data Class: ", args[1])
         self.sub = rospy.Subscriber(*args, **kwargs)
 
     def unregister(self):
