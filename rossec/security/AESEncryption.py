@@ -29,7 +29,7 @@ class AESEncryption:
         #         ...
         #         8 byte missing: 0x0808080808080808 is added
         cipher = AES.new(self.__sec_key, AES.MODE_CBC, iv)
-        encoded = cipher.encrypt(pad(plaintext.encode('utf-8'), 16, 'pkcs7'))
+        encoded = cipher.encrypt(pad(plaintext, 16, 'pkcs7'))
 
         # Attach the initialization vector to the encoding so the decoding process has access to it
         return b64encode(iv + encoded)
@@ -54,5 +54,5 @@ class AESEncryption:
         #         ...
         #         8 byte missing: 0x0808080808080808 is added
         cipher = AES.new(self.__sec_key, AES.MODE_CBC, iv)
-        return unpad(cipher.decrypt(ciphertext), 16, 'pkcs7').decode()
+        return unpad(cipher.decrypt(ciphertext), 16, 'pkcs7')#.decode()
 

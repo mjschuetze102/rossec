@@ -30,6 +30,18 @@ class Publisher(SecurityWrapper):
         # Convert arguments into an instance of provided data_class
         orig = args_kwds_to_message(self.data_class, args, kwargs)
 
+#        for val in orig.transforms.header:
+ #           print(type(val))
+
+  #      for val in orig.transforms.child_frame_id:
+   #         print(type(val))
+
+    #    for val in orig.transforms.transform:
+     #       print(type(val))
+
+      #  print("Jobs done")
+       # return
+
         # Get the attribute information
         buff = StringIO()
         orig.serialize(buff)
@@ -39,6 +51,15 @@ class Publisher(SecurityWrapper):
         # Create the new message to send
         msg = SecuredMessage()
         msg.MessageType = str(self.data_class)
+#        contents = contents.decode('utf-8')
+ #       print(contents.decode('utf-8'))
+  #      if isinstance(contents, str):
+   #         print "ordinary string"
+    #    elif isinstance(contents, unicode):
+     #       print "unicode string"
+      #  else:
+       #     print "not a string"
+        #return
         msg.MessageContent = self.encode(contents)
         self.pub.publish(msg)
 
@@ -66,6 +87,7 @@ class Subscriber(SecurityWrapper):
         # Create the original message from the encrypted data
         obj = self.data_class()
         obj.deserialize(self.decode(data.MessageContent))
+        print(obj)
 
         try:     # If callback takes args
             self.callback(obj, self.callback_args)
