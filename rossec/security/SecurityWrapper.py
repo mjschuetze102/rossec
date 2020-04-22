@@ -8,7 +8,10 @@ class SecurityWrapper(object):
     """
 
     def __init__(self):
-        self.AES = AESEncryption(bytes("12345678901234567890123456789012"))
+        self.AES = self.__load_key__(self.name)
+
+    def __load_key__(self, name):
+        return AESEncryption(bytes("12345678901234567890123456789012"))
 
     def encode(self, contents):
         return self.AES.encode(contents)
