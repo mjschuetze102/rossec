@@ -42,7 +42,7 @@ class Publisher(SecurityWrapper):
         msg.MessageContent = self.encode(contents)
         self.pub.publish(msg)
 
-class Subscriber(SecurityWrapper):
+
     """
     Security wrapper for the Subscriber class
     """
