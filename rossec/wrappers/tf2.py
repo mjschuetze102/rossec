@@ -64,6 +64,8 @@ class TransformListener():
         self.last_update_lock = threading.Lock()
         self.tf_sub = rossec.Subscriber("/tf/encrypted", TFMessage, self.callback, queue_size=queue_size, buff_size=buff_size, tcp_nodelay=tcp_nodelay)
         self.tf_static_sub = rossec.Subscriber("/tf_static/encrypted", TFMessage, self.static_callback, queue_size=queue_size, buff_size=buff_size, tcp_nodelay=tcp_nodelay)
+        self.tf = rospy.Subscriber("/tf", TFMessage, self.callback, queue_size=queue_size, buff_size=buff_size, tcp_nodelay=tcp_nodelay)
+        self.tf_static = rospy.Subscriber("/tf_static", TFMessage, self.static_callback, queue_size=queue_size, buff_size=buff_size, tcp_nodelay=tcp_nodelay)
 
     def __del__(self):
         self.unregister()
