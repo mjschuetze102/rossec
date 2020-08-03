@@ -4,13 +4,17 @@ from Crypto.Random import get_random_bytes
 from Crypto.Util.Padding import pad, unpad
 
 
-class AESEncryption:
+class AES_CBC:
 
     __BLOCK_LENGTH = 128
     __KEY_LENGTH = 256
 
-    def __init__(self, sec_key):
-        self.__sec_key = sec_key # TODO make checks on the size of sec_key
+    def __init__(self):
+        # Only need to generate secret key once
+        self.__sec_key = get_random_bytes(AESEncryption.__KEY_LENGTH // 8)  # Division converts bits to bytes
+
+    def load_key(self, key):
+        self.__sec_key = key
 
     def encode(self, plaintext):
         """
