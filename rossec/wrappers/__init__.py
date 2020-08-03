@@ -1,4 +1,4 @@
-from wrappers import Publisher, Subscriber
+from .topics import Publisher, Subscriber
 
 __all__ = [
         'Publisher',
