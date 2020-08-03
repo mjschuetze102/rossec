@@ -1,7 +1,6 @@
-from .AESEncryption import AESEncryption
-from .SecurityWrapper import SecurityWrapper
+from AES_CBC import AES_CBC
 
 __all__ = [
-        'SecurityWrapper',
+        'AES_CBC',
 ]
 
